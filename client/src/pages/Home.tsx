@@ -1,5 +1,4 @@
-// Direção visual: Identidade Solar do Cerrado — paleta pastoral, emblema oficial, curvas de comunidade e textura de papel.
-import { useAuth } from "@/_core/hooks/useAuth";
+// Direção visual: Identidade Solar do Cerrado, paleta pastoral, emblema oficial, curvas de comunidade e textura de papel.
 import { FormEvent, useState } from "react";
 import {
   ArrowDown,
@@ -27,12 +26,19 @@ import { toast } from "sonner";
 import ShopPreview from "@/components/ShopPreview";
 import ScheduleSection from "@/components/ScheduleSection";
 
+// Todos os ativos são locais, servidos de `client/public/assets/`.
+//
+// Antes: o emblema vinha do storage privado do Manus (`/manus-storage/...`, que
+// só resolvia com as credenciais da plataforma) e as quatro fotos faziam
+// hotlink do WordPress da Arquidiocese, o que deixava o site dependente de um
+// servidor de terceiros. As fotos foram baixadas da fonte oficial.
 const assets = {
-  hero: "https://arquidiocesedegoiania.org.br/wp-content/uploads/2026/06/congresso-banner.png",
-  adoration: "https://arquidiocesedegoiania.org.br/wp-content/uploads/2026/06/congresso-banner.png",
-  city: "https://arquidiocesedegoiania.org.br/wp-content/uploads/2026/07/CARD_9-1.png",
-  community: "https://arquidiocesedegoiania.org.br/wp-content/uploads/2026/07/CARD_7-1.png",
-  symbol: "/manus-storage/cen2027-official-mark_36bd9f63.webp",
+  hero: "/assets/congresso-banner.png",
+  adoration: "/assets/congresso-banner.png",
+  city: "/assets/cen-card-cidade.png",
+  community: "/assets/cen-card-comunidade.png",
+  lockup: "/assets/cen_lockup_marrom.png",
+  lockupLight: "/assets/cen_lockup_branco.png",
 };
 
 const navItems = [
@@ -99,13 +105,6 @@ function scrollToSection(id: string) {
 }
 
 export default function Home() {
-  // The useAuth hook provides authentication state.
-  // To implement login/logout, call logout(), or start login from an event
-  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
-  // startLogin() during render (no href={startLogin()}) — it mints a one-time
-  // nonce cookie and must run only at the moment of navigation.
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -130,23 +129,17 @@ export default function Home() {
         Pular para o conteúdo
       </a>
 
-      <section className="hero-section relative isolate min-h-[760px] overflow-hidden" aria-labelledby="hero-title">
-        <img className="hero-image" src={assets.hero} alt="Paisagem noturna de Goiânia reinterpretada com um halo dourado" />
-        <div className="hero-vignette" aria-hidden="true" />
-        <div className="hero-noise" aria-hidden="true" />
-        <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
-        <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
-
-        <header className="site-nav" aria-label="Navegação principal">
+      {/* O header precisa ficar FORA de `.hero-section`: aquela seção tem
+          `overflow: hidden`, que recorta descendentes `position: fixed` assim
+          que a página rola além dela. Dentro do hero, a nav fixa do mobile
+          simplesmente sumia da tela. */}
+      <header className="site-nav" aria-label="Navegação principal">
           <div className="container nav-inner">
-            <a className="brand-lockup" href="#topo" aria-label="CEN 2027, início">
-              <span className="brand-symbol-wrap">
-                <img src={assets.symbol} alt="" className="brand-symbol" />
-              </span>
-              <span className="brand-copy">
-                <span className="brand-overline">19º congresso</span>
-                <span className="brand-name">Eucarístico Nacional</span>
-              </span>
+            {/* O emblema completo espremido num círculo de 40px ficava
+                ilegível. O lockup horizontal oficial já traz símbolo e
+                assinatura na proporção para que foi desenhado. */}
+            <a className="brand-lockup" href="#topo" aria-label="19º Congresso Eucarístico Nacional, início">
+              <img src={assets.lockup} alt="" className="brand-lockup-image" width={351} height={134} />
             </a>
 
             <nav className={`desktop-nav ${menuOpen ? "is-open" : ""}`}>
@@ -155,6 +148,20 @@ export default function Home() {
                   {item.label}
                 </a>
               ))}
+              {/* No mobile o `.nav-cta` do cabeçalho fica display:none, então o
+                  CTA principal desaparecia por completo. Esta cópia vive dentro
+                  do menu e só aparece abaixo de 720px. */}
+              <button
+                className="nav-cta-mobile"
+                type="button"
+                onClick={() => {
+                  closeMenu();
+                  scrollToSection("#novidades");
+                }}
+              >
+                <span>Receber novidades</span>
+                <ArrowUpRight size={16} strokeWidth={1.7} />
+              </button>
             </nav>
 
             <button className="nav-cta" type="button" onClick={() => scrollToSection("#novidades")}>
@@ -172,7 +179,14 @@ export default function Home() {
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
-        </header>
+      </header>
+
+      <section className="hero-section relative isolate min-h-[760px] overflow-hidden" aria-labelledby="hero-title">
+        <img className="hero-image" src={assets.hero} alt="Paisagem noturna de Goiânia reinterpretada com um halo dourado" />
+        <div className="hero-vignette" aria-hidden="true" />
+        <div className="hero-noise" aria-hidden="true" />
+        <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
+        <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
 
         <div className="container hero-content" id="topo">
           <div className="hero-copy">
@@ -202,7 +216,7 @@ export default function Home() {
 
           <div className="hero-date-panel" aria-label="Data do congresso">
             <span className="date-label">19º CEN · 2027</span>
-            <span className="date-number">03—07</span>
+            <span className="date-number">03-07</span>
             <span className="date-month">setembro</span>
             <span className="date-place">Goiânia / GO</span>
           </div>
@@ -245,7 +259,7 @@ export default function Home() {
               <div className="quote-block">
                 <span className="quote-mark">“</span>
                 <p>Ao receber Jesus na comunhão, o cristão é transformado em uma hóstia viva para continuar a presença de Jesus agindo no mundo.</p>
-                <span className="quote-source">— inspiração do tema do CEN 2027</span>
+                <span className="quote-source">Inspiração do tema do CEN 2027</span>
               </div>
             </div>
             <div className="manifesto-image-wrap">
@@ -306,12 +320,15 @@ export default function Home() {
               <div className="calendar-note"><Clock3 size={16} strokeWidth={1.5} /><span>Detalhes de horários e locais serão divulgados em breve.</span></div>
             </div>
             <div className="date-rail" aria-label="Dias do congresso">
+              {/* 3 de setembro de 2027 cai numa sexta. Os dias estavam todos
+                  deslocados em um, e contradiziam o ScheduleSection, que já
+                  trazia a semana correta. */}
               {[
-                ["03", "qui"],
-                ["04", "sex"],
-                ["05", "sáb"],
-                ["06", "dom"],
-                ["07", "seg"],
+                ["03", "sex"],
+                ["04", "sáb"],
+                ["05", "dom"],
+                ["06", "seg"],
+                ["07", "ter"],
               ].map(([day, weekday], index) => (
                 <div className={`date-stop ${index === 0 ? "is-first" : ""}`} key={day}>
                   <span className="date-stop-point" />
@@ -338,7 +355,7 @@ export default function Home() {
                 <span className="eyebrow-line" />
                 <span>A cidade-sede</span>
               </div>
-              <h2 id="city-title">Goiânia abre seus braços — e suas ruas.</h2>
+              <h2 id="city-title">Goiânia abre seus braços, e suas ruas.</h2>
               <p className="body-large">Entre avenidas largas, ipês e o horizonte do Cerrado, a capital goiana se prepara para acolher o maior encontro católico do país dedicado à adoração e à reflexão sobre o mistério eucarístico.</p>
               <div className="city-facts">
                 <div><span className="fact-symbol">70</span><p>anos da Arquidiocese celebrados em 2027</p></div>
@@ -420,9 +437,8 @@ export default function Home() {
 
       <footer className="site-footer section-ink">
         <div className="container footer-top">
-          <a className="brand-lockup footer-brand" href="#topo" aria-label="CEN 2027, voltar ao início">
-            <span className="brand-symbol-wrap"><img src={assets.symbol} alt="" className="brand-symbol" /></span>
-            <span className="brand-copy"><span className="brand-overline">19º congresso</span><span className="brand-name">Eucarístico Nacional</span></span>
+          <a className="brand-lockup footer-brand" href="#topo" aria-label="19º Congresso Eucarístico Nacional, voltar ao início">
+            <img src={assets.lockupLight} alt="" className="brand-lockup-image" width={351} height={134} />
           </a>
           <div className="footer-phrase">Uma cidade.<br /><em>Um só pão.</em><br />Uma presença.</div>
           <div className="footer-contact"><span>Fale com a organização</span><a href="mailto:cen2027@arquidiocesedegoiania.org.br">cen2027@arquidiocesedegoiania.org.br</a><a href="tel:+5562991274961">(62) 99127-4961</a></div>

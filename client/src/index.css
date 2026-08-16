@@ -1,4 +1,4 @@
-/* Direção visual: Identidade Solar do Cerrado — emblema oficial, marfim rosado, dourado fosco, marrom café, ipê e comunidade. */
+/* Direção visual: Identidade Solar do Cerrado: emblema oficial, marfim rosado, dourado fosco, marrom café, ipê e comunidade. */
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -67,7 +67,7 @@ a { color: inherit; text-decoration: none; }
 .skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; transform: translateY(-160%); padding: 10px 14px; border: 1px solid #D5B253; background: #3B2B2A; color: #F1E9E9; transition: transform 180ms var(--ease-out); }
 .skip-link:focus { transform: translateY(0); }
 
-h1, h2, h3, .brand-name, .date-number, .fact-symbol, .footer-phrase { font-family: "Atkinson Hyperlegible", Arial, sans-serif; letter-spacing: -.035em; }
+h1, h2, h3, .date-number, .fact-symbol, .footer-phrase { font-family: "Atkinson Hyperlegible", Arial, sans-serif; letter-spacing: -.035em; }
 h1, h2, h3, p { margin-top: 0; }
 :focus-visible { outline: 3px solid #5C9B5B; outline-offset: 4px; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -83,12 +83,8 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .hero-orbit-two { width: min(54vw, 690px); aspect-ratio: 1; right: -8%; top: -4%; transform: rotate(19deg); border-top-color: transparent; border-right-color: rgba(59,43,42,.24); }
 .site-nav { position: absolute; z-index: 10; top: 0; left: 0; width: 100%; border-bottom: 1px solid rgba(59,43,42,.18); background: linear-gradient(180deg, rgba(241,233,233,.86), rgba(241,233,233,.18)); }
 .nav-inner { display: flex; align-items: center; min-height: 92px; gap: 36px; }
-.brand-lockup { display: inline-flex; align-items: center; gap: 11px; flex: 0 0 auto; }
-.brand-symbol-wrap { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(213,178,83,.82); border-radius: 50%; overflow: hidden; background: #F1E9E9; }
-.brand-symbol { width: 40px; height: 40px; object-fit: cover; object-position: 50% 29%; mix-blend-mode: multiply; }
-.brand-copy { display: grid; gap: 1px; text-transform: uppercase; letter-spacing: .1em; }
-.brand-overline { font-size: 9px; color: #8B6D2A; letter-spacing: .2em; }
-.brand-name { font-size: 15px; color: #3B2B2A; line-height: 1; letter-spacing: .025em; text-transform: none; }
+.brand-lockup { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.brand-lockup-image { display: block; width: 205px; height: auto; }
 .desktop-nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
 .desktop-nav a { position: relative; color: rgba(59,43,42,.72); font-size: 11px; letter-spacing: .11em; text-transform: uppercase; transition: color 180ms var(--ease-out); }
 .desktop-nav a::after { content: ""; position: absolute; left: 0; bottom: -9px; width: 0; height: 1px; background: #D5B253; transition: width 220ms var(--ease-out); }
@@ -99,6 +95,8 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .nav-cta:hover, .primary-button:hover { background: #5C9B5B; color: #F1E9E9; box-shadow: 0 10px 32px rgba(59,43,42,.18); transform: translateY(-2px); }
 .nav-cta:active, .primary-button:active { transform: scale(.97); }
 .mobile-menu-button { display: none; color: #3B2B2A; background: transparent; cursor: pointer; }
+/* Cópia do CTA do cabeçalho que só aparece dentro do menu mobile. Ver Home.tsx. */
+.nav-cta-mobile { display: none; }
 
 .hero-content { position: relative; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr) 280px; align-items: end; gap: 80px; min-height: 700px; padding-top: 150px; padding-bottom: 85px; }
 .hero-copy { max-width: 690px; }
@@ -106,7 +104,11 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .eyebrow-light { color: rgba(59,43,42,.68); }
 .eyebrow-dark { color: rgba(59,43,42,.66); }
 .eyebrow-line { display: inline-block; width: 32px; height: 1px; background: currentColor; opacity: .7; }
-.hero-copy h1 { max-width: 720px; margin: 22px 0 24px; color: #3B2B2A; font-size: clamp(4.5rem, 8.7vw, 8.5rem); font-weight: 400; line-height: .83; letter-spacing: -.065em; }
+/* Entrelinhas: os valores originais (.83, .84, .86, .8) foram calibrados para
+   caixa-alta sem acento. Em português, Ó/Ç/Ã colidem com a linha de cima e a
+   cedilha encosta na de baixo. Subidos ao mínimo que preserva o aperto
+   editorial e ainda acomoda diacrítico. */
+.hero-copy h1 { max-width: 720px; margin: 22px 0 24px; color: #3B2B2A; font-size: clamp(4.5rem, 8.7vw, 8.5rem); font-weight: 400; line-height: .92; letter-spacing: -.065em; }
 .hero-copy h1 em { display: inline; }
 .hero-copy h1 span { display: block; color: rgba(59,43,42,.72); font-size: .62em; line-height: .98; letter-spacing: -.04em; }
 .hero-description { max-width: 480px; margin-bottom: 31px; color: rgba(59,43,42,.71); font-size: 16px; line-height: 1.65; }
@@ -118,8 +120,8 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .text-link:hover svg { transform: translateX(4px); }
 .hero-date-panel { position: relative; align-self: end; display: grid; gap: 4px; padding: 22px 0 24px 26px; border-left: 1px solid rgba(213,178,83,.9); color: #3B2B2A; }
 .date-label, .date-place { color: #8B6D2A; font-size: 10px; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
-.date-number { margin: 9px 0 -2px; font-size: 86px; font-weight: 400; letter-spacing: -.075em; line-height: .8; }
-.date-month { font-family: "Atkinson Hyperlegible", Arial, sans-serif; color: #3B2B2A; font-size: 28px; font-style: italic; line-height: 1; }
+.date-number { margin: 9px 0 -2px; font-size: 86px; font-weight: 400; letter-spacing: -.075em; line-height: .95; }
+.date-month { font-family: "Atkinson Hyperlegible", Arial, sans-serif; color: #3B2B2A; font-size: 28px; font-style: italic; line-height: 1.18; }
 .date-place { margin-top: 13px; color: rgba(59,43,42,.67); font-size: 9px; }
 .hero-footer { position: absolute; z-index: 3; bottom: 29px; left: 50%; display: flex; align-items: center; justify-content: space-between; gap: 20px; transform: translateX(-50%); color: rgba(59,43,42,.58); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
 .hero-scroll-note { display: flex; align-items: center; gap: 10px; }
@@ -155,7 +157,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .aside-number span { color: rgba(59,43,42,.42); font-size: 17px; letter-spacing: 0; }
 .aside-note { max-width: 125px; margin: 0; color: rgba(59,43,42,.58); font-size: 11px; line-height: 1.6; }
 .manifesto-copy { max-width: 640px; }
-.manifesto-copy h2, .city-copy h2, .calendar-intro h2, .confirmed-layout h2, .faq-intro h2 { margin: 0 0 26px; font-size: clamp(3.25rem, 5.2vw, 5.8rem); font-weight: 400; line-height: .86; letter-spacing: -.06em; }
+.manifesto-copy h2, .city-copy h2, .calendar-intro h2, .confirmed-layout h2, .faq-intro h2 { margin: 0 0 26px; font-size: clamp(3.25rem, 5.2vw, 5.8rem); font-weight: 400; line-height: .95; letter-spacing: -.06em; }
 .manifesto-copy h2 span { display: block; color: rgba(59,43,42,.44); }
 .body-large { max-width: 530px; color: rgba(59,43,42,.72); font-size: 18px; line-height: 1.62; }
 .quote-block { position: relative; max-width: 510px; margin-top: 48px; padding: 24px 0 0 30px; border-top: 1px solid rgba(59,43,42,.2); }
@@ -169,7 +171,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 
 .experience-section { padding: 125px 0 135px; background-image: radial-gradient(circle at 82% 18%, rgba(98,185,215,.12), transparent 30%), linear-gradient(120deg, #3B2B2A, #5A3633 62%); }
 .section-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 80px; margin-bottom: 60px; }
-.section-title { max-width: 640px; margin: 23px 0 0; font-size: clamp(3.1rem, 5vw, 5.5rem); font-weight: 400; line-height: .84; letter-spacing: -.06em; }
+.section-title { max-width: 640px; margin: 23px 0 0; font-size: clamp(3.1rem, 5vw, 5.5rem); font-weight: 400; line-height: .94; letter-spacing: -.06em; }
 .light-title { color: #F1E9E9; }
 .heading-note { max-width: 260px; margin: 0 0 3px; color: rgba(241,233,233,.62); font-size: 13px; line-height: 1.55; }
 .experience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -188,7 +190,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 
 .calendar-section { position: relative; overflow: hidden; padding: 117px 0 126px; }
 .calendar-section::before { content: ""; position: absolute; top: 0; left: -2%; width: 104%; height: 28px; background: #D5B253; border-radius: 0 0 52% 36%; }
-.calendar-section::after { content: "03—07"; position: absolute; right: -15px; bottom: -52px; color: rgba(59,43,42,.05); font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 240px; line-height: 1; letter-spacing: -.1em; pointer-events: none; }
+.calendar-section::after { content: "03-07"; position: absolute; right: -15px; bottom: -52px; color: rgba(59,43,42,.05); font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 240px; line-height: 1; letter-spacing: -.1em; pointer-events: none; }
 .calendar-layout { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 100px; }
 .calendar-intro { position: relative; z-index: 1; }
 .calendar-intro h2 { max-width: 470px; }
@@ -231,7 +233,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .confirmed-item.is-pending { color: rgba(59,43,42,.5); }
 .newsletter-section { padding: 116px 0 124px; background: #3B2B2A; }
 .newsletter-shell { display: grid; grid-template-columns: 1fr .75fr; align-items: center; gap: 90px; }
-.newsletter-copy h2 { max-width: 650px; margin: 22px 0 22px; color: #F1E9E9; font-size: clamp(3.25rem, 5.2vw, 5.7rem); font-weight: 400; line-height: .84; letter-spacing: -.06em; }
+.newsletter-copy h2 { max-width: 650px; margin: 22px 0 22px; color: #F1E9E9; font-size: clamp(3.25rem, 5.2vw, 5.7rem); font-weight: 400; line-height: .94; letter-spacing: -.06em; }
 .newsletter-copy > p { max-width: 475px; margin-bottom: 30px; color: rgba(241,233,233,.72); font-size: 15px; line-height: 1.6; }
 .newsletter-form { display: flex; align-items: stretch; max-width: 580px; gap: 9px; }
 .input-wrap { display: flex; align-items: center; flex: 1; gap: 11px; min-height: 46px; padding: 0 14px; border: 1px solid rgba(241,233,233,.34); color: #D5B253; background: rgba(241,233,233,.08); }
@@ -258,7 +260,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .site-footer { padding: 63px 0 28px; }
 .footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 35px; align-items: start; padding-bottom: 64px; border-bottom: 1px solid rgba(241,233,233,.22); }
 .footer-brand { align-self: start; }
-.footer-phrase { justify-self: center; color: rgba(241,233,233,.9); font-size: 38px; line-height: .82; letter-spacing: -.04em; }
+.footer-phrase { justify-self: center; color: rgba(241,233,233,.9); font-size: 38px; line-height: 1.02; letter-spacing: -.04em; }
 .footer-contact { display: grid; gap: 8px; justify-self: end; color: rgba(241,233,233,.58); font-size: 11px; text-align: right; }
 .footer-contact span { color: #D5B253; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
 .footer-contact a { color: rgba(241,233,233,.82); transition: color 180ms var(--ease-out); }
@@ -269,7 +271,7 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 .footer-socials { display: flex; gap: 16px; }
 .footer-socials a { color: rgba(241,233,233,.62); transition: color 180ms var(--ease-out), transform 180ms var(--ease-out); }
 .footer-socials a:hover { color: #D5B253; transform: translateY(-2px); }
-.back-to-top { position: fixed; z-index: 15; right: 24px; bottom: 24px; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(213,178,83,.82); cursor: pointer; color: #D5B253; background: rgba(59,43,42,.92); transform: rotate(180deg); transition: background 180ms var(--ease-out), color 180ms var(--ease-out); }
+.back-to-top { position: fixed; z-index: 15; right: 24px; bottom: 24px; display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(213,178,83,.82); cursor: pointer; color: #D5B253; background: rgba(59,43,42,.92); transform: rotate(180deg); transition: background 180ms var(--ease-out), color 180ms var(--ease-out); }
 .back-to-top:hover { color: #3B2B2A; background: #D5B253; }
 
 @media (max-width: 980px) {
@@ -288,14 +290,26 @@ h1 em, h2 em, .footer-phrase em { color: #D5B253; font-style: italic; font-weigh
 
 @media (max-width: 720px) {
   .container { padding-left: 19px; padding-right: 19px; }
-  .site-nav { background: rgba(241,233,233,.88); backdrop-filter: blur(12px); }
+  /* A nav era `position: absolute` e saía da tela para sempre depois de 77px
+     de rolagem, deixando um one-page de ~8.000px sem navegação no celular.
+     Fixa, como o ideas.md já especificava ("navegação curta, fixa e translúcida"). */
+  .site-nav { position: fixed; background: rgba(241,233,233,.94); backdrop-filter: blur(12px); }
   .nav-inner { min-height: 76px; }
-  .brand-name { font-size: 13px; }
-  .desktop-nav { position: absolute; top: 76px; left: 0; right: 0; display: none; padding: 18px 19px 22px; border-bottom: 1px solid rgba(59,43,42,.18); background: #F1E9E9; }
-  .desktop-nav.is-open { display: grid; gap: 18px; }
-  .desktop-nav a { font-size: 11px; }
+  .brand-lockup-image { width: 156px; }
+  /* Impede que as âncoras parem embaixo da nav fixa. */
+  section[id], #topo, #conteudo { scroll-margin-top: 88px; }
+  .desktop-nav { position: absolute; top: 76px; left: 0; right: 0; display: none; max-height: calc(100vh - 76px); overflow-y: auto; padding: 8px 19px 20px; border-bottom: 1px solid rgba(59,43,42,.18); background: #F1E9E9; }
+  .desktop-nav.is-open { display: grid; gap: 2px; }
+  /* Alvos de 18px de altura com fonte 11px reprovavam na WCAG 2.5.8 (mínimo
+     24x24) e contrariavam a meta de legibilidade para idosos do todo.md. */
+  .desktop-nav a { display: flex; align-items: center; min-height: 52px; padding: 0 6px; border-bottom: 1px solid rgba(59,43,42,.1); color: #3B2B2A; font-size: 14px; letter-spacing: .08em; }
+  .desktop-nav a::after { display: none; }
   .nav-cta { display: none; }
-  .mobile-menu-button { display: grid; place-items: center; margin-left: auto; }
+  .nav-cta-mobile { display: inline-flex; align-items: center; justify-content: center; gap: 11px; min-height: 52px; margin-top: 16px; padding: 0 17px; cursor: pointer; color: #F1E9E9; background: #3B2B2A; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .mobile-menu-button { display: grid; place-items: center; width: 48px; height: 48px; margin-right: -8px; margin-left: auto; }
+  /* Ficava por cima do texto do corpo numa coluna de 375px e virou redundante
+     com a nav fixa, que já leva ao topo pelo logotipo. */
+  .back-to-top { display: none; }
   .hero-section { min-height: 780px; }
   .hero-image { top: 24%; right: -7%; width: 78%; height: 49%; opacity: .72; }
   .hero-vignette { background: linear-gradient(90deg, #F1E9E9 0%, rgba(241,233,233,.91) 58%, rgba(241,233,233,.4) 100%), linear-gradient(0deg, rgba(59,43,42,.24), transparent 55%); }

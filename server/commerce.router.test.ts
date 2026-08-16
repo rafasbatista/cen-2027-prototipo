@@ -85,7 +85,7 @@ describe("commerce.products", () => {
       { name: "Title", value: "Default Title" },
     ]);
 
-    // The shape must not contain raw GraphQL edges/nodes — that would mean the
+    // The shape must not contain raw GraphQL edges/nodes, that would mean the
     // normalization layer leaked. Stringify and assert.
     const serialized = JSON.stringify(product);
     expect(serialized.includes("edges")).toBe(false);

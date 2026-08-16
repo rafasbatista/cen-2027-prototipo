@@ -7,7 +7,7 @@
  * `server/_core/shopify.ts` + `server/_core/shopifyNormalize.ts` are
  * responsible for normalizing into these shapes.
  *
- * Keep `Money.amount` as a `string` — it mirrors what every commerce backend
+ * Keep `Money.amount` as a `string`, it mirrors what every commerce backend
  * returns and avoids float-precision risk on totals. The UI converts to a
  * number only when calling `Intl.NumberFormat`.
  */
@@ -35,14 +35,14 @@ export type SelectedOption = {
 };
 
 export type ProductVariant = {
-  /** Opaque variant identifier — pass back to addItem / cart mutations as-is. */
+  /** Opaque variant identifier, pass back to addItem / cart mutations as-is. */
   id: string;
   /** Human label such as "Medium / Charcoal" or "Default Title". */
   title: string;
   price: Money;
   compareAtPrice: Money | null;
   availableForSale: boolean;
-  /** Flat list of selected options — sized for variant pickers. */
+  /** Flat list of selected options, sized for variant pickers. */
   selectedOptions: SelectedOption[];
 };
 
@@ -57,7 +57,7 @@ export type Product = {
   vendor: string | null;
   tags: string[];
   images: Image[];
-  /** Min / max across all variants — useful for "from $X" pricing. */
+  /** Min / max across all variants, useful for "from $X" pricing. */
   priceRange: { min: Money; max: Money };
   /** Available option dimensions (e.g. Size, Color) for the variant picker. */
   options: ProductOption[];
@@ -73,7 +73,7 @@ export type Collection = {
 };
 
 export type CartItem = {
-  /** Cart-line identifier — required for update/remove. */
+  /** Cart-line identifier, required for update/remove. */
   lineId: string;
   variantId: string;
   productHandle: string;
@@ -87,7 +87,7 @@ export type CartItem = {
 
 export type Cart = {
   id: string;
-  /** Already includes `channel=online_store` — open directly. */
+  /** Already includes `channel=online_store`, open directly. */
   checkoutUrl: string;
   items: CartItem[];
   itemCount: number;

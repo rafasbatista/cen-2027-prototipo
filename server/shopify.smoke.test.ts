@@ -2,7 +2,7 @@
  * Live smoke test for the Shopify Storefront integration.
  *
  * Goal: prove the store actually returns at least one usable product with
- * the three things a storefront needs to render — a title, an image, and a
+ * the three things a storefront needs to render, a title, an image, and a
  * non-zero price. If this passes, the homepage and PDP will work; if it
  * fails, there's an integration / catalog issue, not a UI bug.
  *
@@ -58,7 +58,7 @@ describe.skipIf(!configured)("shopify smoke (live)", () => {
   );
 });
 
-// Visible reminder when the suite is skipped — keeps it from looking like a
+// Visible reminder when the suite is skipped, keeps it from looking like a
 // silent pass on misconfigured sandboxes.
 describe.skipIf(configured)("shopify smoke (skipped)", () => {
   it("is skipped because SHOPIFY_STORE_DOMAIN / SHOPIFY_STOREFRONT_API_ACCESS_TOKEN are not set", () => {

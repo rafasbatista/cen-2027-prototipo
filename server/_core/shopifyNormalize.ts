@@ -3,13 +3,13 @@
  *
  * This file is the ONLY place in the codebase that's allowed to know the
  * shape of a Shopify Storefront GraphQL response. Everything it returns is
- * typed against `shared/commerce/types` — backend-agnostic. If a future store
+ * typed against `shared/commerce/types`, backend-agnostic. If a future store
  * ever swaps Shopify for another commerce backend, this file (plus the
  * GraphQL fragments in `shopify.ts`) is what changes; the router, the
  * shared types, and the UI all stay put.
  *
  * The corresponding test in `server/commerce.router.test.ts` serializes a
- * normalized `Product` and asserts the substring `"edges"` is absent — that's
+ * normalized `Product` and asserts the substring `"edges"` is absent, that's
  * the canary for this seam.
  */
 

@@ -27,8 +27,8 @@ const days: { key: DayKey; weekday: string; label: string }[] = [
 
 const timeFilters: { key: TimeFilter; label: string }[] = [
   { key: "all", label: "Todos os horários" },
-  { key: "morning", label: "Manhã · 6h–12h" },
-  { key: "afternoon", label: "Tarde · 12h–18h" },
+  { key: "morning", label: "Manhã · 6h às 12h" },
+  { key: "afternoon", label: "Tarde · 12h às 18h" },
   { key: "evening", label: "Noite · após 18h" },
 ];
 

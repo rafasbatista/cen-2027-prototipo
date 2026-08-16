@@ -16,7 +16,7 @@ export function formatMoney(value: Money | string | number, currencyCode?: strin
     code = currencyCode ?? "USD";
   }
 
-  if (Number.isNaN(amountNum)) return "—";
+  if (Number.isNaN(amountNum)) return "-";
 
   try {
     return new Intl.NumberFormat("en-US", {

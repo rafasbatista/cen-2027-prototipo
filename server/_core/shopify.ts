@@ -1,7 +1,7 @@
 /**
  * Shopify Storefront API adapter.
  *
- * All Storefront access — catalog reads and cart reads/writes — goes through
+ * All Storefront access, catalog reads and cart reads/writes, goes through
  * this module. The Admin token is intentionally not used in app code; product
  * setup is performed once via the Shopify MCP tools.
  *
@@ -14,7 +14,7 @@
  *      addCartLines, updateCartLines, removeCartLines
  *
  * Every function returns backend-agnostic `shared/commerce/types` via
- * `shopifyNormalize.ts` — the rest of the app never sees raw Shopify shapes.
+ * `shopifyNormalize.ts`, the rest of the app never sees raw Shopify shapes.
  */
 
 import { TRPCError } from "@trpc/server";
@@ -37,7 +37,7 @@ import {
  */
 export const SHOPIFY_API_VERSION = "2025-04";
 
-/** Lazy env access — tests can override `process.env` before each case. */
+/** Lazy env access, tests can override `process.env` before each case. */
 function getShopifyStoreDomain(): string {
   return process.env.SHOPIFY_STORE_DOMAIN ?? "";
 }
@@ -152,7 +152,7 @@ function unwrapCart(
 }
 
 // ---------------------------------------------------------------------------
-// GraphQL fragments — single source of truth for what we request.
+// GraphQL fragments, single source of truth for what we request.
 // Two rules baked in here:
 //   - Never include `quantityAvailable` (requires a scope we don't have →
 //     ACCESS_DENIED). Use `availableForSale: boolean` instead.

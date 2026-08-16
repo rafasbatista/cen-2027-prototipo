@@ -17,7 +17,7 @@ import {
  * - Persists the cart id in localStorage and rehydrates on mount.
  * - Exposes a tiny imperative surface to UI: addItem, updateQuantity,
  *   removeItem, openCart, proceedToCheckout. Everything is typed against
- *   `shared/commerce/types` — the Shopify backend is invisible.
+ *   `shared/commerce/types`: the Shopify backend is invisible.
  */
 
 const CART_STORAGE_KEY = "commerce:cart-id";
@@ -71,7 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (cancelled) return;
         if (c) setCart(c);
         else {
-          // Stored cart id no longer valid — drop it.
+          // Stored cart id no longer valid, drop it.
           writeStoredCartId(null);
           setCartId(null);
         }

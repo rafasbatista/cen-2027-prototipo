@@ -1,4 +1,4 @@
-// Direção visual: Identidade Solar do Cerrado — pastoral, ilustrada, territorial e comunitária.
+// Direção visual: Identidade Solar do Cerrado: pastoral, ilustrada, territorial e comunitária.
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";

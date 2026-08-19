@@ -13,7 +13,11 @@ import { defineConfig } from "vite";
 //     navegador em `.manus-logs/`. Junto com ele saiu a injeção do script
 //     `/__manus__/debug-collector.js` no HTML.
 
+// `base` permite publicar em subpasta (GitHub Pages de projeto fica em
+// https://usuario.github.io/repositorio/). Em dev e no servidor Express fica "/".
+// Defina VITE_BASE no build estatico, ex.: VITE_BASE=/cen-2027-prototipo/
 export default defineConfig({
+  base: process.env.VITE_BASE ?? "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

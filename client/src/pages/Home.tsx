@@ -32,13 +32,18 @@ import ScheduleSection from "@/components/ScheduleSection";
 // só resolvia com as credenciais da plataforma) e as quatro fotos faziam
 // hotlink do WordPress da Arquidiocese, o que deixava o site dependente de um
 // servidor de terceiros. As fotos foram baixadas da fonte oficial.
+// BASE_URL vale "/" em dev e no Express, e "/repositorio/" quando o build
+// estatico vai para uma subpasta como a do GitHub Pages. Sem esse prefixo os
+// caminhos absolutos apontariam para a raiz do dominio e as imagens sumiriam.
+const asset = (nome: string) => `${import.meta.env.BASE_URL}assets/${nome}`;
+
 const assets = {
-  hero: "/assets/congresso-banner.png",
-  adoration: "/assets/congresso-banner.png",
-  city: "/assets/cen-card-cidade.png",
-  community: "/assets/cen-card-comunidade.png",
-  lockup: "/assets/cen_lockup_marrom.png",
-  lockupLight: "/assets/cen_lockup_branco.png",
+  hero: asset("congresso-banner.png"),
+  adoration: asset("congresso-banner.png"),
+  city: asset("cen-card-cidade.png"),
+  community: asset("cen-card-comunidade.png"),
+  lockup: asset("cen_lockup_marrom.png"),
+  lockupLight: asset("cen_lockup_branco.png"),
 };
 
 const navItems = [

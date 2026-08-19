@@ -76,7 +76,15 @@ function CartDrawer() {
 }
 
 export default function ShopPreview() {
-  const { data: products = [], isLoading, isError } = trpc.commerce.products.list.useQuery({ first: 2 });
+  // Sem `retry: false` a consulta ficava repetindo a chamada indefinidamente
+  // quando nao ha backend (build estatico) ou quando o Shopify nao esta
+  // configurado. Enquanto isso `isLoading` e `isError` ficavam ambos falsos com
+  // a lista vazia, e a secao renderizava um buraco sem explicacao nenhuma.
+  const { data: products = [], isLoading, isError } = trpc.commerce.products.list.useQuery(
+    { first: 2 },
+    { retry: false },
+  );
+  const semProdutos = !isLoading && !isError && products.length === 0;
   const { itemCount, openCart } = useCart();
 
   return (
@@ -94,8 +102,8 @@ export default function ShopPreview() {
           </div>
         </div>
         {isLoading && <div className="shop-state" role="status">Carregando os produtos da loja…</div>}
-        {isError && <div className="shop-state" role="alert">A loja está em preparação. Tente novamente em instantes.</div>}
-        {!isLoading && !isError && <div className="shop-grid">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div>}
+        {(isError || semProdutos) && <div className="shop-state" role="status">O catálogo está em preparação. Os produtos serão publicados aqui.</div>}
+        {!isLoading && !isError && products.length > 0 && <div className="shop-grid">{products.map((product) => <ProductCard key={product.id} product={product} />)}</div>}
         <p className="shop-disclaimer">Loja protótipo: preços, disponibilidade e detalhes de personalização serão confirmados pela organização antes da abertura oficial.</p>
       </div>
       <CartDrawer />

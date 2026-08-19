@@ -1,0 +1,4 @@
+# Prototipo de apresentacao, nao e o site oficial do 19o Congresso
+# Eucaristico Nacional. Fora de buscadores de proposito.
+User-agent: *
+Disallow: /
